@@ -18,8 +18,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 3 |
-| Total Weight (kg) | 40 |
+| Total Iterations | 4 |
+| Total Weight (kg) | 65 |
 | Total Time (min) | 15 |
 | Failed Attempts | 0 |
 
@@ -113,6 +113,36 @@ Loading state ekle. API key'i .env'de tut, .gitignore'a ekle.
 **Commit:** `fb08c61 — [NAIM: Ceren Pocket Doraemon] Added Claude API integration - 20kg`
 
 **Commit:**
+
+---
+
+### 🏋️ Iteration 4
+
+| Field | Value |
+|-------|-------|
+| Feature | Gemini API + Doraemon Hub (floating icon + modal — self-improving loop) |
+| Weight | `25 kg (Boss Level: AI agent that updates app live)` |
+| Tool Used | `Claude Code + Google Gemini 2.0 Flash` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success |
+
+**Prompt given to AI:**
+```
+Iteration 4: Claude API'yi Gemini 2.0 Flash ile değiştir.
+Sağ alt köşeye floating Doraemon 🎒 icon ekle.
+Tıklayınca modal açılsın — kullanıcı "Haftalık planlayıcı ekle" gibi
+bir şey yazsın, Gemini yeni JSON dönsün, ana ekran canlı güncellensin.
+Bu self-improving loop'un kapısı.
+```
+
+**What happened:**
+- geminiRespond.ts ile Gemini 2.0 Flash entegre edildi. DoraemonHub.tsx floating icon + modal chat
+  ile tamamlandı. Kullanıcı hub'dan istek gönderince Gemini yeni JSON döndürüyor ve ana ekran güncelleniyor.
+
+**Screenshot:** `[Hub açıkken ve güncelleme sonrası ekran görüntüsü ekle]`
+
+**Commit:** `de2c200 — [NAIM: Ceren Pocket Doraemon] Added Gemini API + Doraemon Hub - 25kg`
 
 ---
 
