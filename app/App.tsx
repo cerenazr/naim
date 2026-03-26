@@ -18,8 +18,9 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import JsonRenderer from './components/JsonRenderer';
+import DoraemonHub from './components/DoraemonHub';
 import { DoraemonResponse } from './utils/mockRespond';
-import { claudeRespond } from './utils/claudeRespond';
+import { geminiRespond } from './utils/geminiRespond';
 
 export default function App() {
   const [input, setInput] = useState('');
@@ -31,7 +32,7 @@ export default function App() {
     setLoading(true);
     setInput('');
     try {
-      const result = await claudeRespond(input);
+      const result = await geminiRespond(input);
       setResponse(result);
     } finally {
       setLoading(false);
@@ -69,6 +70,9 @@ export default function App() {
           </View>
         )}
       </ScrollView>
+
+      {/* Floating Doraemon Hub — sağ alt köşe, self-improving loop kapısı */}
+      <DoraemonHub onNewResponse={(r) => setResponse(r)} />
 
       {/* Sticky input bar — Aydınlık, yuvarlatılmış tema */}
       <KeyboardAvoidingView

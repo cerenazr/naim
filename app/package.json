@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
+    "@google/generative-ai": "^0.24.1",
     "expo": "~54.0.0",
     "expo-status-bar": "~3.0.9",
     "react": "19.1.0",
