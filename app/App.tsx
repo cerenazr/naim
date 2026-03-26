@@ -8,6 +8,7 @@ import {
   Platform,
   SafeAreaView,
   ScrollView,
+  ActivityIndicator,
   StyleSheet,
   Text,
   TextInput,
@@ -17,17 +18,24 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import JsonRenderer from './components/JsonRenderer';
-import { mockRespond, DoraemonResponse } from './utils/mockRespond';
+import { DoraemonResponse } from './utils/mockRespond';
+import { claudeRespond } from './utils/claudeRespond';
 
 export default function App() {
   const [input, setInput] = useState('');
   const [response, setResponse] = useState<DoraemonResponse | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  function handleSend() {
-    if (!input.trim()) return;
-    const result = mockRespond(input);
-    setResponse(result);
+  async function handleSend() {
+    if (!input.trim() || loading) return;
+    setLoading(true);
     setInput('');
+    try {
+      const result = await claudeRespond(input);
+      setResponse(result);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -42,7 +50,12 @@ export default function App() {
 
       {/* Render alanı */}
       <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollContent}>
-        {response ? (
+        {loading ? (
+          <View style={styles.emptyState}>
+            <ActivityIndicator size="large" color="#0096ff" />
+            <Text style={styles.emptyText}>Cebime bakıyorum...</Text>
+          </View>
+        ) : response ? (
           <JsonRenderer response={response} />
         ) : (
           <View style={styles.emptyState}>
