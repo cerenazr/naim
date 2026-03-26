@@ -18,8 +18,8 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 1 |
-| Total Weight (kg) | 5 |
+| Total Iterations | 2 |
+| Total Weight (kg) | 20 |
 | Total Time (min) | 15 |
 | Failed Attempts | 0 |
 
@@ -61,24 +61,27 @@ açıklama metni ve temel renk şeması ile.
 
 | Field | Value |
 |-------|-------|
-| Feature | |
-| Weight | |
-| Tool Used | |
-| Time | |
-| Attempts | |
-| Status | |
+| Feature | Text input + Mock JSON Render Engine (3 gadget type) |
+| Weight | `10 kg (+5 kg araç kombinasyonu bonusu = 15 kg)` |
+| Tool Used | `Claude Code (mimari) + Antigravity MCP (UI — sıradaki adım)` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ⚠️ Partial (mimari hazır, Antigravity UI bekleniyor) |
 
 **Prompt given to AI:**
 ```
-
+Iteration 2: Expo RN app'e input alanı ekle. Kullanıcı ne yazarsa
+mockRespond.ts JSON döndürsün, JsonRenderer.tsx bunu render etsin.
+3 type: task_list, motivation, focus_card.
+Antigravity için TODO yorumları bırak, handoff dökümanı yaz.
 ```
 
 **What happened:**
--
+- Claude Code JSON schema mimarisini kurdu: mockRespond.ts, JsonRenderer.tsx, App.tsx layout. Antigravity için ANTIGRAVITY_BRIEF.md handoff dökümanı oluşturuldu. UI tasarımı Antigravity adımı.
 
-**Screenshot:**
+**Screenshot:** `[Antigravity UI implement ettikten sonra ekle]`
 
-**Commit:**
+**Commit:** `[commit hash buraya]`
 
 ---
 
