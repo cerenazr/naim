@@ -61,7 +61,7 @@ export default function App() {
         ) : (
           <View style={styles.emptyState}>
             <Image 
-              source={require('../assets/dora.jpeg')}
+              source={require('./assets/dora.jpeg')}
               style={styles.emptyImage} 
               resizeMode="contain"
             />
