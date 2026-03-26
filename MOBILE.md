@@ -53,7 +53,7 @@ açıklama metni ve temel renk şeması ile.
 
 **Screenshot:** `[Expo Go'dan ekran görüntüsü ekle]`
 
-**Commit:** `[commit hash buraya]`
+**Commit:** `2ca7f44 — [NAIM: Ceren Pocket Doraemon] Added single screen with app title and description - 5kg`
 
 ---
 
