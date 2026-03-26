@@ -81,7 +81,7 @@ Antigravity için TODO yorumları bırak, handoff dökümanı yaz.
 
 **Screenshot:** `[Antigravity UI implement ettikten sonra ekle]`
 
-**Commit:** `[commit hash buraya]`
+**Commit:** `7ccf9ad — [NAIM: Ceren Pocket Doraemon] Added input + mock JSON render engine - 10kg`
 
 ---
 
