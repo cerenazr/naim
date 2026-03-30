@@ -48,7 +48,7 @@
 **What happened:**
 - [1-2 sentences: did it work? what broke? what surprised you?]
 
-**Screenshot:** `[link or filename]`
+**Screenshot:** `assets\dora.jpeg`
 
 **Commit:** `[commit hash or message]`
 

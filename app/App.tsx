@@ -1,212 +1,182 @@
-// App.tsx
-// Layout skeleton — Antigravity bu dosyayı UI tasarımıyla dolduracak.
-// Mimari sabit kalacak: üstte render alanı, altta sticky input bar.
-
-import React, { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, TouchableOpacity, Text, Platform, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import JsonRenderer from './components/JsonRenderer';
-import DoraemonHub from './components/DoraemonHub';
-import { DoraemonResponse } from './utils/mockRespond';
-import { geminiRespond } from './utils/geminiRespond';
+import { MaterialIcons } from '@expo/vector-icons';
+import * as Font from 'expo-font';
+import { 
+  PlusJakartaSans_400Regular,
+  PlusJakartaSans_500Medium,
+  PlusJakartaSans_600SemiBold,
+  PlusJakartaSans_700Bold,
+  PlusJakartaSans_800ExtraBold 
+} from '@expo-google-fonts/plus-jakarta-sans';
+import { 
+  BeVietnamPro_400Regular,
+  BeVietnamPro_500Medium,
+  BeVietnamPro_600SemiBold,
+  BeVietnamPro_700Bold
+} from '@expo-google-fonts/be-vietnam-pro';
+
+import ChatScreen from './components/ChatScreen';
+import TaskListScreen from './components/TaskListScreen';
+import MotivationScreen from './components/MotivationScreen';
+import FocusModeScreen from './components/FocusModeScreen';
+import { theme } from './theme';
 
 export default function App() {
-  const [input, setInput] = useState('');
-  const [response, setResponse] = useState<DoraemonResponse | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [currentTab, setCurrentTab] = useState('home');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  async function handleSend() {
-    if (!input.trim() || loading) return;
-    setLoading(true);
-    setInput('');
-    try {
-      const result = await geminiRespond(input);
-      setResponse(result);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        PlusJakartaSans_400Regular,
+        PlusJakartaSans_500Medium,
+        PlusJakartaSans_600SemiBold,
+        PlusJakartaSans_700Bold,
+        PlusJakartaSans_800ExtraBold,
+        BeVietnamPro_400Regular,
+        BeVietnamPro_500Medium,
+        BeVietnamPro_600SemiBold,
+        BeVietnamPro_700Bold,
+      });
+      setFontsLoaded(true);
     }
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return <View style={styles.loadingContainer}><Text>Yükleniyor...</Text></View>;
   }
 
-  return (
-    <SafeAreaView style={styles.safe}>
-      <StatusBar style="light" />
+  const renderScreen = () => {
+    switch (currentTab) {
+      case 'home':
+        return <MotivationScreen />;
+      case 'pocket':
+        return <TaskListScreen />;
+      case 'chat':
+        return <ChatScreen />;
+      case 'profile':
+        return <FocusModeScreen />;
+      default:
+        return <MotivationScreen />;
+    }
+  };
 
-      {/* Header tasarımı — Aydınlık Doraemon temalı */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>🎒 Ceren Pocket Doraemon</Text>
-        <Text style={styles.headerSub}>Cebi aç, ne lazımsa çıkar</Text>
+  return (
+    <View style={styles.container}>
+      <StatusBar style="dark" />
+      
+      {/* Screen Render Area */}
+      <View style={styles.screenContainer}>
+        {renderScreen()}
       </View>
 
-      {/* Render alanı */}
-      <ScrollView style={styles.scrollArea} contentContainerStyle={styles.scrollContent}>
-        {loading ? (
-          <View style={styles.emptyState}>
-            <ActivityIndicator size="large" color="#0096ff" />
-            <Text style={styles.emptyText}>Cebime bakıyorum...</Text>
-          </View>
-        ) : response ? (
-          <JsonRenderer response={response} />
-        ) : (
-          <View style={styles.emptyState}>
-            <Image 
-              source={require('./assets/dora.jpeg')}
-              style={styles.emptyImage} 
-              resizeMode="contain"
-            />
-            <Text style={styles.emptyTitle}>Sihirli Cebim Açık!</Text>
-            <Text style={styles.emptyText}>Bana bir şey sor, hazır bekliyorum.</Text>
-          </View>
-        )}
-      </ScrollView>
-
-      {/* Floating Doraemon Hub — sağ alt köşe, self-improving loop kapısı */}
-      <DoraemonHub onNewResponse={(r) => setResponse(r)} />
-
-      {/* Sticky input bar — Aydınlık, yuvarlatılmış tema */}
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.inputBarContainer}
-      >
-        <View style={styles.inputBar}>
-          <TextInput
-            style={styles.textInput}
-            value={input}
-            onChangeText={setInput}
-            placeholder="Bugün ne lazım?"
-            placeholderTextColor="#88929b"
-            onSubmitEditing={handleSend}
-            returnKeyType="send"
+      {/* Floating Bottom Navigation Bar */}
+      <View style={styles.navContainer}>
+        <View style={styles.navBar}>
+          <NavItem 
+            icon="home" 
+            label="Bugün" 
+            isActive={currentTab === 'home'} 
+            onPress={() => setCurrentTab('home')} 
           />
-          <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-            <Text style={styles.sendIcon}>➤</Text>
-          </TouchableOpacity>
+          <NavItem 
+            icon="work" 
+            label="Cebim" 
+            isActive={currentTab === 'pocket'} 
+            onPress={() => setCurrentTab('pocket')} 
+          />
+          <NavItem 
+            icon="chat-bubble" 
+            label="Sohbet" 
+            isActive={currentTab === 'chat'} 
+            onPress={() => setCurrentTab('chat')} 
+          />
+          <NavItem 
+            icon="person" 
+            label="Odak" 
+            isActive={currentTab === 'profile'} 
+            onPress={() => setCurrentTab('profile')} 
+          />
         </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </View>
+    </View>
+  );
+}
+
+function NavItem({ icon, label, isActive, onPress }: { icon: any, label: string, isActive: boolean, onPress: () => void }) {
+  return (
+    <TouchableOpacity 
+      style={[styles.navItem, isActive && styles.navItemActive]} 
+      onPress={onPress}
+      activeOpacity={0.7}
+    >
+      <MaterialIcons 
+        name={icon} 
+        size={24} 
+        color={isActive ? theme.colors.primary_container : theme.colors.outline} 
+      />
+      <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>{label}</Text>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: {
+  container: {
     flex: 1,
-    backgroundColor: '#0096ff', // Match header color for top safe area
+    backgroundColor: theme.colors.surface,
   },
-  header: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 20,
-    backgroundColor: '#0096ff', // Doraemon blue
+  loadingContainer: {
+    flex: 1,
     alignItems: 'center',
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
-    zIndex: 10,
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: '900',
-    color: '#ffffff',
-    letterSpacing: 0.5,
-  },
-  headerSub: {
-    fontSize: 14,
-    color: '#e6f2ff',
-    marginTop: 4,
-    fontWeight: '500',
-  },
-  scrollArea: {
-    flex: 1,
-    backgroundColor: '#f0f8ff', // Soft sky blue
-  },
-  scrollContent: {
-    flexGrow: 1,
     justifyContent: 'center',
-    paddingBottom: 20,
   },
-  emptyState: {
-    alignItems: 'center',
-    padding: 40,
+  screenContainer: {
+    flex: 1,
   },
-  emptyImage: {
-    width: 180,
-    height: 180,
-    marginBottom: 24,
-    borderRadius: 90,
-    borderWidth: 4,
-    borderColor: '#ffffff',
+  navContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    paddingHorizontal: 16,
+    paddingBottom: Platform.OS === 'ios' ? 24 : 16,
+    backgroundColor: 'transparent',
   },
-  emptyTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#0096ff',
-    marginBottom: 8,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: '#555555',
-  },
-  inputBarContainer: {
-    backgroundColor: '#f0f8ff',
-  },
-  inputBar: {
+  navBar: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 40,
     paddingVertical: 12,
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 32,
-    borderTopRightRadius: 32,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
+    shadowColor: theme.colors.primary,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.1,
+    shadowRadius: 20,
     elevation: 10,
-    paddingBottom: Platform.OS === 'ios' ? 24 : 12, // extra padding for iOS home bar
+    borderColor: 'rgba(255, 255, 255, 0.5)',
+    borderWidth: 1,
   },
-  textInput: {
-    flex: 1,
-    backgroundColor: '#f0f8ff',
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    color: '#333333',
-    fontSize: 16,
-    marginRight: 10,
-    marginLeft: 8,
-    fontWeight: '500',
-  },
-  sendButton: {
-    backgroundColor: '#e60012', // Collar Red
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+  navItem: {
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#e60012',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    borderRadius: 20,
   },
-  sendIcon: {
-    color: '#ffffff',
-    fontSize: 20,
-    fontWeight: 'bold',
+  navItemActive: {
+    backgroundColor: theme.colors.surface_container_low,
   },
+  navLabel: {
+    fontFamily: theme.fonts.label,
+    fontSize: 11,
+    color: theme.colors.outline,
+    marginTop: 4,
+  },
+  navLabelActive: {
+    color: theme.colors.primary_container,
+    fontFamily: theme.fonts.labelBold,
+  }
 });

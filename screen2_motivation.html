@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>4D Asistanım - Motivation (Cosmic Pocket)</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#111125",
+            "surface": "#111125",
+            "surface-dim": "#111125",
+            "surface-bright": "#37374d",
+            "surface-container-lowest": "#0c0c1f",
+            "surface-container-low": "#1a1a2e",
+            "surface-container": "#1e1e32",
+            "surface-container-high": "#28283d",
+            "surface-container-highest": "#333348",
+            
+            "primary": "#84cfff",
+            "primary-container": "#3ab4f2",
+            "on-primary": "#00344c",
+            "on-primary-container": "#004360",
+            
+            "secondary": "#ffb2b7",
+            "secondary-container": "#9e0030",
+            "on-secondary": "#67001c",
+            "on-secondary-container": "#ffa7ae",
+            
+            "tertiary": "#e7c400",
+            "tertiary-container": "#c6a800",
+            "on-tertiary": "#3a3000",
+            "on-tertiary-container": "#4a3e00",
+            
+            "on-surface": "#e2e0fc",
+            "on-surface-variant": "#bec8d1",
+            "outline": "#88929b",
+            "outline-variant": "#3e4850",
+            
+            "error": "#ffb4ab",
+            "on-error": "#690005"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Be Vietnam Pro", "sans-serif"],
+            "label": ["Be Vietnam Pro", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      -webkit-tap-highlight-color: transparent;
+      min-height: max(884px, 100dvh);
+    }
+    /* Ghost Border Fallback */
+    .ghost-border {
+      box-shadow: inset 0 0 0 1px rgba(62, 72, 80, 0.15); /* outline-variant at 15% */
+    }
+    .ambient-shadow {
+      box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4), 0px 0px 20px rgba(132, 207, 255, 0.05);
+    }
+    .interaction-glow:focus-within {
+      box-shadow: 0 0 20px rgba(132, 207, 255, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col pb-32 selection:bg-primary/30 antialiased">
+
+  <!-- TopAppBar -->
+  <header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-surface-container-low/60 backdrop-blur-[16px] ghost-border">
+    <div class="flex items-center gap-4">
+      <div class="w-10 h-10 bg-surface-container rounded-full flex items-center justify-center overflow-hidden">
+        <img alt="Doraemon Assistant" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPT8W2Tj15ryhBg8RfuEDRVtzrzCufNn6d8PQEDhALkywq3aKnuhrjIccmccMaU5776Rct6S8qQ2G8YYRTWtuKkNROhKs15Q2O3ZxzageEoYRo18UQm3mVqX9N2Y1Vjgl4ZmvowPpA633h7SECMc2DRtHLq7PaltW1cq3z5zpRnRCd8D9vJ2AEdoc8SGv8gcRVtZCyDyKJTzn-XwxL6p5WTWgEV_-uacpJU4wS-sv14ajPYFWpWt4Gw9KyfkZHaX4FIOsPHh-Y7W0"/>
+      </div>
+      <h1 class="font-headline font-bold text-lg text-primary tracking-wide">4D Pocket</h1>
+    </div>
+    <button class="w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center text-on-surface hover:bg-surface-bright transition-colors">
+      <span class="material-symbols-outlined">more_vert</span>
+    </button>
+  </header>
+
+  <main class="flex-1 px-6 pt-24 space-y-8 max-w-md mx-auto w-full">
+    
+    <!-- Motivation Widget (Tonal Layering & Depth) -->
+    <section class="relative bg-surface-container rounded-[1.5rem] p-8 ambient-shadow overflow-hidden group">
+      <!-- Glow effect (Cosmic light simulation) -->
+      <div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-secondary/10 rounded-full blur-3xl"></div>
+      
+      <div class="relative z-10">
+        <h2 class="text-secondary text-sm font-headline font-semibold mb-6 uppercase tracking-[0.2em]">Daily Transmission</h2>
+        
+        <p class="text-[2rem] font-extrabold font-headline leading-[1.2] text-on-surface italic mb-8 border-l-[4px] border-primary pl-6">
+          "The future belongs to those who learn from the past and act in the present."
+        </p>
+        
+        <div class="flex items-center justify-between">
+          <p class="text-on-surface-variant font-label text-sm uppercase tracking-widest font-bold">Curator Core</p>
+          <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center shadow-lg cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-colors">
+             <span class="material-symbols-outlined text-[18px]">share</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Response Bubbles -->
+    <div class="space-y-6">
+       <!-- AI Response Bubble -->
+       <div class="bg-surface-container-low rounded-2xl rounded-tl-none p-5 relative ghost-border shadow-sm w-[85%] ml-2">
+         <div class="absolute -left-2 top-0 w-2 h-2 bg-primary rounded-full"></div>
+         <p class="text-sm font-body text-on-surface-variant leading-relaxed">
+           Your "History Revision" task has been queued. Need me to summarize the 19th-century module for you?
+         </p>
+       </div>
+
+       <!-- User Request Bubble -->
+       <div class="bg-surface-container-highest rounded-2xl rounded-tr-none p-5 relative ghost-border shadow-sm w-[85%] ml-auto">
+         <p class="text-sm font-body text-on-surface leading-relaxed">
+           Yes, please. Keep it under 5 bullet points.
+         </p>
+       </div>
+    </div>
+
+  </main>
+
+  <!-- Sticky Bottom Input -->
+  <div class="fixed bottom-24 left-0 w-full px-6 z-40">
+    <div class="bg-surface-container-highest/80 backdrop-blur-[20px] rounded-[2rem] p-3 flex items-center gap-3 interaction-glow transition-shadow duration-300">
+      <div class="w-10 h-10 bg-surface-container rounded-full flex items-center justify-center text-on-surface-variant shrink-0">
+        <span class="material-symbols-outlined text-[20px]">add</span>
+      </div>
+      <input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface font-body font-medium placeholder:text-on-surface-variant text-sm" placeholder="Send a command..." type="text"/>
+      
+      <button class="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-primary-container flex items-center justify-center text-on-primary shadow-lg active:scale-95 transition-transform shrink-0">
+        <span class="material-symbols-outlined font-bold text-[18px]">send</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- BottomNavBar -->
+  <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface-container-lowest/80 backdrop-blur-[20px] ghost-border rounded-t-[2rem]">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-on-surface transition-colors group" href="screen1_tasks.html">
+      <span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform">widgets</span>
+      <span class="font-label text-[11px] font-bold mt-1 tracking-wide">Hub</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary px-5 py-2 group" href="#">
+      <span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+      <span class="font-label text-[11px] font-bold mt-1 tracking-wide">Spark</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-on-surface transition-colors group" href="screen3_focus_light.html">
+      <span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform">timer</span>
+      <span class="font-label text-[11px] font-bold mt-1 tracking-wide">Focus</span>
+    </a>
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>4D Asistanım - Focus (Cosmic Pocket)</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "background": "#111125",
+            "surface": "#111125",
+            "surface-dim": "#111125",
+            "surface-bright": "#37374d",
+            "surface-container-lowest": "#0c0c1f",
+            "surface-container-low": "#1a1a2e",
+            "surface-container": "#1e1e32",
+            "surface-container-high": "#28283d",
+            "surface-container-highest": "#333348",
+            
+            "primary": "#84cfff",
+            "primary-container": "#3ab4f2",
+            "on-primary": "#00344c",
+            "on-primary-container": "#004360",
+            
+            "secondary": "#ffb2b7",
+            "secondary-container": "#9e0030",
+            "on-secondary": "#67001c",
+            "on-secondary-container": "#ffa7ae",
+            
+            "tertiary": "#e7c400",
+            "tertiary-container": "#c6a800",
+            "on-tertiary": "#3a3000",
+            "on-tertiary-container": "#4a3e00",
+            
+            "on-surface": "#e2e0fc",
+            "on-surface-variant": "#bec8d1",
+            "outline": "#88929b",
+            "outline-variant": "#3e4850",
+            
+            "error": "#ffb4ab",
+            "on-error": "#690005"
+          },
+          fontFamily: {
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Be Vietnam Pro", "sans-serif"],
+            "label": ["Be Vietnam Pro", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      -webkit-tap-highlight-color: transparent;
+      min-height: max(884px, 100dvh);
+    }
+    .ghost-border {
+      box-shadow: inset 0 0 0 1px rgba(62, 72, 80, 0.15); 
+    }
+    .timer-glow {
+      text-shadow: 0 0 40px rgba(132, 207, 255, 0.4);
+    }
+    .ambient-shadow {
+      box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col pb-32">
+
+  <header class="w-full top-0 sticky z-50 flex items-center justify-between px-6 h-16 bg-surface-container-low/60 backdrop-blur-[16px] ghost-border">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shadow-sm cursor-pointer hover:bg-surface-bright transition-colors">
+        <span class="material-symbols-outlined text-primary text-[20px]">arrow_back_ios_new</span>
+      </div>
+      <h1 class="font-headline font-bold text-lg text-on-surface">Deep Focus</h1>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-md mx-auto px-6 pt-12 space-y-12 w-full">
+    
+    <!-- Timer Widget (Stacked UI Tier) -->
+    <section class="flex flex-col items-center">
+      <div class="bg-surface-container-low rounded-full px-5 py-2 mb-8 border border-outline-variant/30 flex items-center gap-2">
+         <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+         <span class="text-xs font-label font-bold text-on-surface-variant uppercase tracking-[0.15em]">Neural Link Active</span>
+      </div>
+      
+      <!-- Big Timer Display -->
+      <div class="relative w-64 h-64 bg-surface-container-lowest rounded-full flex items-center justify-center ambient-shadow ghost-border">
+        <div class="absolute inset-0 rounded-full border-[2px] border-primary/20 scale-105 pointer-events-none"></div>
+        <div class="text-[5.5rem] font-headline font-black text-primary timer-glow leading-none tracking-tighter ml-2">
+          25<span class="text-[3rem] text-primary-container align-top opacity-50 ml-1">:00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Bar -->
+    <section class="flex justify-center gap-6">
+      <button class="w-14 h-14 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright transition-transform hover:scale-105 active:scale-95 ghost-border shadow-md">
+        <span class="material-symbols-outlined text-[24px]">stop</span>
+      </button>
+
+      <!-- Primary Gradient FAB -->
+      <button class="w-20 h-20 rounded-[2rem] bg-gradient-to-br from-primary to-primary-container text-on-primary shadow-[inset_0_1px_2px_rgba(255,255,255,0.4),0_10px_20px_rgba(132,207,255,0.2)] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-10">
+        <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+      </button>
+
+      <button class="w-14 h-14 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center hover:bg-surface-bright transition-transform hover:scale-105 active:scale-95 ghost-border shadow-md">
+        <span class="material-symbols-outlined text-[24px]">fast_forward</span>
+      </button>
+    </section>
+
+    <!-- Focus Info Card -->
+    <section class="bg-surface-container rounded-2xl p-6 relative overflow-hidden group ghost-border">
+      <div class="absolute right-0 top-0 opacity-5">
+        <span class="material-symbols-outlined text-[6rem]">eco</span>
+      </div>
+      <h3 class="text-sm font-label font-bold text-secondary uppercase tracking-[0.1em] mb-2">Current Protocol</h3>
+      <p class="text-base font-semibold text-on-surface leading-snug">Studying Temporal Mechanics (Chapter 4)</p>
+      <div class="mt-4 flex items-center justify-between text-xs text-on-surface-variant font-label font-bold uppercase">
+         <span>Session 1 of 4</span>
+         <span>0 points earned</span>
+      </div>
+      <div class="mt-2 w-full h-1 bg-surface-container-highest rounded-full overflow-hidden flex">
+        <div class="w-1/4 h-full bg-secondary"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BottomNavBar -->
+  <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface-container-lowest/80 backdrop-blur-[20px] ghost-border rounded-t-[2rem]">
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-on-surface transition-colors group" href="screen1_tasks.html">
+      <span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform">widgets</span>
+      <span class="font-label text-[11px] font-bold mt-1 tracking-wide">Hub</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:text-on-surface transition-colors group" href="screen2_motivation.html">
+      <span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform">auto_awesome</span>
+      <span class="font-label text-[11px] font-bold mt-1 tracking-wide">Spark</span>
+    </a>
+    <a class="flex flex-col items-center justify-center text-primary px-5 py-2 group" href="#">
+      <span class="material-symbols-outlined text-2xl group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">timer</span>
+      <span class="font-label text-[11px] font-bold mt-1 tracking-wide">Focus</span>
+    </a>
+  </nav>
+
+</body>
+</html>
