@@ -18,9 +18,9 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 4 |
-| Total Weight (kg) | 65 |
-| Total Time (min) | 15 |
+| Total Iterations | 6 |
+| Total Weight (kg) | 95 |
+| Total Time (min) | 45 |
 | Failed Attempts | 0 |
 
 ---
@@ -143,6 +143,59 @@ Bu self-improving loop'un kapısı.
 **Screenshot:** `[Hub açıkken ve güncelleme sonrası ekran görüntüsü ekle]`
 
 **Commit:** `de2c200 — [NAIM: Ceren Pocket Doraemon] Added Gemini API + Doraemon Hub - 25kg`
+
+---
+
+### 🏋️ Iteration 5
+
+| Field | Value |
+|-------|-------|
+| Feature | UI/UX — Cosmic Pocket Dark theme (Antigravity) |
+| Weight | `10 kg + 5 kg araç kombinasyonu bonusu = 15 kg` |
+| Tool Used | `Antigravity MCP (UI scoring loop)` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success (Score: 92) |
+
+**Prompt given to AI:**
+```
+UI UX Iteration 1: Migrate to Cosmic Pocket Dark theme.
+Antigravity ile dark renk şemasına geç, puan sistemiyle değerlendir.
+```
+
+**What happened:**
+- Antigravity MCP ile Cosmic Pocket Dark tema uygulandı. Renk şeması, dark mode accents ve tipografi güncellendi. UI scoring sistemi 92/100 verdi.
+
+**Screenshot:** `[Cosmic Pocket Dark tema ekran görüntüsü ekle]`
+
+**Commit:** `7bc115d — UI UX Iteration 1: Migrate to Cosmic Pocket Dark theme. Score: 92`
+
+---
+
+### 🏋️ Iteration 6
+
+| Field | Value |
+|-------|-------|
+| Feature | UI/UX — Hybrid Light/Dark theme + Light mode revert (Antigravity) |
+| Weight | `10 kg + 5 kg araç kombinasyonu bonusu = 15 kg` |
+| Tool Used | `Antigravity MCP (UI scoring loop)` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success (Score: 95) |
+
+**Prompt given to AI:**
+```
+UI UX Iteration 2: Hybrid Light/Dark theme.
+Light mode'a dön, dark pocket accents ile hibrit tema yap.
+Puan sistemiyle değerlendir.
+```
+
+**What happened:**
+- Antigravity MCP ile Hybrid tema uygulandı: Light mode base + dark pocket accents kombinasyonu. Score: 95/100. Önceki pure dark tema reverted, daha kullanıcı dostu hibrit yapı benimsendi.
+
+**Screenshot:** `[Hybrid Light/Dark tema ekran görüntüsü ekle]`
+
+**Commit:** `1c70d3c — UI UX Iteration 2: Hybrid Light/Dark theme. Score: 95. Reverted to Light mode with dark pocket accents.`
 
 ---
 

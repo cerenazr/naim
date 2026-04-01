@@ -6,8 +6,8 @@ Pick your lifts. Go in order or skip around — your call.
 
 ## 🟢 Warm-Up (5-10 kg each)
 
-- [ ] Single screen with app title and description
-- [ ] Basic color scheme / theme
+- [x] Single screen with app title and description
+- [x] Basic color scheme / theme
 - [ ] Static text content display
 - [ ] Simple button with alert/action
 - [ ] App icon / branding
@@ -16,11 +16,11 @@ Pick your lifts. Go in order or skip around — your call.
 
 ## 🟡 Working Set (10-15 kg each)
 
-- [ ] Text input → output (user types, app responds)
+- [x] Text input → output (user types, app responds)
 - [ ] Multi-screen navigation (tabs or stack)
 - [ ] List/scroll view with items
 - [ ] Image display (static or from URL)
-- [ ] Dark mode toggle
+- [x] Dark mode toggle
 - [ ] Timestamp / clock feature
 - [ ] Delete / edit functionality
 - [ ] Custom animations or transitions
@@ -31,10 +31,10 @@ Pick your lifts. Go in order or skip around — your call.
 
 - [ ] Camera capture or image picker
 - [ ] Voice input (speech-to-text)
-- [ ] External API call (weather, quotes, news, etc.)
+- [x] External API call (weather, quotes, news, etc.)
 - [ ] Local storage / persistence (data survives app restart)
 - [ ] Search / filter functionality
-- [ ] AI chat feature (LLM integration)
+- [x] AI chat feature (LLM integration)
 - [ ] AI image generation or analysis
 - [ ] Push notification (simulated or real)
 - [ ] Map / location feature
