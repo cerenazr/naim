@@ -32,7 +32,7 @@ export async function geminiRespond(input: string): Promise<DoraemonResponse> {
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.0-flash-lite',
       systemInstruction: SYSTEM_PROMPT,
     });
 

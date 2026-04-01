@@ -48,7 +48,7 @@ export default function MotivationScreen() {
         <View style={styles.bentoGrid}>
           <TouchableOpacity style={styles.bentoItemLight}>
             <View style={styles.bentoIconLight}>
-              <MaterialIcons name="magic-button" size={24} color={theme.colors.primary} />
+              <MaterialIcons name="auto-fix-high" size={24} color={theme.colors.primary} />
             </View>
             <View>
               <Text style={styles.bentoTitleLight}>Gadgets</Text>
