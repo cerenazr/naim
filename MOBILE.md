@@ -18,9 +18,9 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Iterations | 6 |
-| Total Weight (kg) | 95 |
-| Total Time (min) | 45 |
+| Total Iterations | 10 |
+| Total Weight (kg) | 210 |
+| Total Time (min) | 105 |
 | Failed Attempts | 0 |
 
 ---
@@ -196,6 +196,109 @@ Puan sistemiyle değerlendir.
 **Screenshot:** `[Hybrid Light/Dark tema ekran görüntüsü ekle]`
 
 **Commit:** `1c70d3c — UI UX Iteration 2: Hybrid Light/Dark theme. Score: 95. Reverted to Light mode with dark pocket accents.`
+
+---
+
+### 🏋️ Iteration 7
+
+| Field | Value |
+|-------|-------|
+| Feature | Todo CRUD — görev ekleme, düzenleme, silme |
+| Weight | `15 kg` |
+| Tool Used | `Claude Code` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success |
+
+**Prompt given to AI:**
+```
+To do alanı güncellenip todo ekleeler düzenlemeler yapılabilir şuan orası normal bir alan
+```
+
+**What happened:**
+- TaskListScreen.tsx'e state yönetimi eklendi: inputText, editingId, nextId. addOrUpdateTask, deleteTask, startEdit fonksiyonları yazıldı. Alt input state'e bağlandı, send butonu çalışır hale getirildi. Uzun basınca düzenleme modu, × ikonu ile silme.
+
+**Screenshot:** `[Todo CRUD ekran görüntüsü ekle]`
+
+**Commit:** `[NAIM: Ceren Pocket Doraemon] Todo CRUD add/edit/delete - 15kg`
+
+---
+
+### 🏋️ Iteration 8
+
+| Field | Value |
+|-------|-------|
+| Feature | Local storage — todo'lar uygulama kapansa da telefonda kalır |
+| Weight | `20 kg` |
+| Tool Used | `Claude Code + @react-native-async-storage/async-storage` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success |
+
+**Prompt given to AI:**
+```
+Local storage ekle — todo'lar uygulama kapanınca kaybolmasın.
+AsyncStorage ile kaydet/yükle.
+```
+
+**What happened:**
+- `@react-native-async-storage/async-storage` kuruldu. TaskListScreen.tsx'e iki useEffect eklendi: biri açılışta storage'dan yükler, diğeri her değişimde kaydeder. maxId da storage'dan hesaplanıyor.
+
+**Screenshot:** `[Uygulama kapatılıp açılınca todo'ların kaldığı ekran görüntüsü ekle]`
+
+**Commit:** `[NAIM: Ceren Pocket Doraemon] Local storage persistence - 20kg`
+
+---
+
+### 🏋️ Iteration 9
+
+| Field | Value |
+|-------|-------|
+| Feature | AI Feature Suggester — Doraemon Hub "Öner" modu (Boss Level) |
+| Weight | `25 kg + 15 kg autoresearch bonusu = 40 kg` |
+| Tool Used | `Claude Code + Gemini 2.0 Flash` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success |
+
+**Prompt given to AI:**
+```
+DoraemonHub'a "Öner" modu ekle. Mevcut özellik listesini Gemini'ye gönder,
+sıradaki en iyi özelliği Türkçe önersin. Self-improving loop.
+```
+
+**What happened:**
+- DoraemonHub.tsx'e 3 sekmeli tab bar eklendi. "Öner" modunda Gemini'ye mevcut özellik listesi gönderiliyor, AI sıradaki en değerli özelliği açıklıyor. geminiRaw.ts yardımcı utility olarak oluşturuldu.
+
+**Screenshot:** `[Öner modu ve Gemini önerisi ekran görüntüsü ekle]`
+
+**Commit:** `[NAIM: Ceren Pocket Doraemon] AI Feature Suggester (Öner modu) - 40kg`
+
+---
+
+### 🏋️ Iteration 10
+
+| Field | Value |
+|-------|-------|
+| Feature | Self-Documentation — app kendi dokümantasyonunu Gemini ile yazıyor (Boss Level) |
+| Weight | `25 kg + 15 kg autoresearch bonusu = 40 kg` |
+| Tool Used | `Claude Code + Gemini 2.0 Flash` |
+| Time | `15 min` |
+| Attempts | `1` |
+| Status | ✅ Success |
+
+**Prompt given to AI:**
+```
+DoraemonHub'a "Belgele" modu ekle. Uygulama kendi özelliklerini Gemini'ye
+göndersin, Gemini profesyonel Türkçe dokümantasyon yazsın. Meta loop tamamlandı.
+```
+
+**What happened:**
+- DoraemonHub "Belgele" modu: özellik listesi Gemini'ye gönderiliyor, dönen dokümantasyon modal içinde ScrollView'da gösteriliyor. Uygulama kendi dokümantasyonunu kendisi yazıyor — self-improving loop kapandı.
+
+**Screenshot:** `[Belgele modu ve AI dokümantasyon ekran görüntüsü ekle]`
+
+**Commit:** `[NAIM: Ceren Pocket Doraemon] Self-Documentation (Belgele modu) - 40kg`
 
 ---
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   View,
   Text,
@@ -23,6 +24,24 @@ const initialTasks: Task[] = [
 
 export default function TaskListScreen() {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
+  const [inputText, setInputText] = useState('');
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [nextId, setNextId] = useState(4);
+
+  useEffect(() => {
+    AsyncStorage.getItem('tasks').then(val => {
+      if (val) {
+        const saved = JSON.parse(val) as Task[];
+        setTasks(saved);
+        const maxId = saved.reduce((m, t) => Math.max(m, t.id), 0);
+        setNextId(maxId + 1);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const toggleTask = (id: number) => {
     setTasks(prev =>
@@ -30,8 +49,31 @@ export default function TaskListScreen() {
     );
   };
 
+  const addOrUpdateTask = () => {
+    const text = inputText.trim();
+    if (!text) return;
+    if (editingId !== null) {
+      setTasks(prev => prev.map(t => t.id === editingId ? { ...t, label: text } : t));
+      setEditingId(null);
+    } else {
+      setTasks(prev => [...prev, { id: nextId, label: text, done: false }]);
+      setNextId(n => n + 1);
+    }
+    setInputText('');
+  };
+
+  const deleteTask = (id: number) => {
+    setTasks(prev => prev.filter(t => t.id !== id));
+    if (editingId === id) { setEditingId(null); setInputText(''); }
+  };
+
+  const startEdit = (task: Task) => {
+    setInputText(task.label);
+    setEditingId(task.id);
+  };
+
   const doneCount = tasks.filter(t => t.done).length;
-  const percent = Math.round((doneCount / tasks.length) * 100);
+  const percent = tasks.length === 0 ? 0 : Math.round((doneCount / tasks.length) * 100);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -75,21 +117,31 @@ export default function TaskListScreen() {
 
           <View style={styles.taskList}>
             {tasks.map(task => (
-              <TouchableOpacity
-                key={task.id}
-                style={styles.taskItem}
-                onPress={() => toggleTask(task.id)}
-                activeOpacity={0.7}
-              >
-                <View style={[styles.checkbox, task.done && styles.checkboxDone]}>
-                  {task.done && (
-                    <MaterialIcons name="check" size={16} color="#fff" />
-                  )}
-                </View>
-                <Text style={[styles.taskLabel, task.done && styles.taskLabelDone]}>
-                  {task.label}
-                </Text>
-              </TouchableOpacity>
+              <View key={task.id} style={styles.taskItem}>
+                <TouchableOpacity
+                  onPress={() => toggleTask(task.id)}
+                  activeOpacity={0.7}
+                >
+                  <View style={[styles.checkbox, task.done && styles.checkboxDone]}>
+                    {task.done && (
+                      <MaterialIcons name="check" size={16} color="#fff" />
+                    )}
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{ flex: 1 }}
+                  onLongPress={() => startEdit(task)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.taskLabel, task.done && styles.taskLabelDone,
+                    editingId === task.id && styles.taskLabelEditing]}>
+                    {task.label}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => deleteTask(task.id)} activeOpacity={0.7}>
+                  <MaterialIcons name="close" size={18} color="#cbd5e1" />
+                </TouchableOpacity>
+              </View>
             ))}
           </View>
 
@@ -136,11 +188,15 @@ export default function TaskListScreen() {
       <View style={styles.bottomInputContainer}>
         <TextInput
           style={styles.textInput}
-          placeholder="Yeni bir görev veya komut yaz..."
+          placeholder={editingId !== null ? 'Görevi düzenle...' : 'Yeni görev ekle...'}
           placeholderTextColor={theme.colors.outline}
+          value={inputText}
+          onChangeText={setInputText}
+          onSubmitEditing={addOrUpdateTask}
+          returnKeyType="done"
         />
-        <TouchableOpacity style={styles.sendButton}>
-          <MaterialIcons name="send" size={20} color="#fff" />
+        <TouchableOpacity style={styles.sendButton} onPress={addOrUpdateTask}>
+          <MaterialIcons name={editingId !== null ? 'check' : 'add'} size={20} color="#fff" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -291,6 +347,10 @@ const styles = StyleSheet.create({
   taskLabelDone: {
     textDecorationLine: 'line-through',
     color: '#94a3b8',
+  },
+  taskLabelEditing: {
+    color: theme.colors.primary,
+    fontFamily: theme.fonts.bodyBold,
   },
   progressRow: {
     flexDirection: 'row',

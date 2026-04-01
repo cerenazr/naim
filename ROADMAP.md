@@ -22,7 +22,7 @@ Pick your lifts. Go in order or skip around — your call.
 - [ ] Image display (static or from URL)
 - [x] Dark mode toggle
 - [ ] Timestamp / clock feature
-- [ ] Delete / edit functionality
+- [x] Delete / edit functionality
 - [ ] Custom animations or transitions
 
 ---
@@ -32,7 +32,7 @@ Pick your lifts. Go in order or skip around — your call.
 - [ ] Camera capture or image picker
 - [ ] Voice input (speech-to-text)
 - [x] External API call (weather, quotes, news, etc.)
-- [ ] Local storage / persistence (data survives app restart)
+- [x] Local storage / persistence (data survives app restart)
 - [ ] Search / filter functionality
 - [x] AI chat feature (LLM integration)
 - [ ] AI image generation or analysis
@@ -44,12 +44,12 @@ Pick your lifts. Go in order or skip around — your call.
 
 ## 🟣 Boss Level (25+ kg each)
 
-- [ ] AI agent that suggests next feature (meta!)
+- [x] AI agent that suggests next feature (meta!)
 - [ ] Server-driven UI (UI defined by backend JSON)
 - [ ] Sketch-to-UI: draw on paper → photograph → generate screen
 - [ ] Multi-language support (i18n)
 - [ ] Accessibility features (screen reader, high contrast)
-- [ ] App generates its own documentation
+- [x] App generates its own documentation
 - [ ] Cross-device sync
 
 ---
