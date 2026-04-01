@@ -1,8 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const API_KEY = process.env.EXPO_PUBLIC_GEMINI_KEY ?? '';
-
 export async function geminiRaw(prompt: string): Promise<string> {
+  const API_KEY = process.env.EXPO_PUBLIC_GEMINI_KEY ?? '';
   if (!API_KEY) throw new Error('No Gemini key');
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
